@@ -4,7 +4,111 @@ from .models import League, Team, Player
 from . import team_maker
 
 def index(request):
+	# SPORTS ORM I
+	# 1. todas las ligas de béisbol
+	baseball_leagues = League.objects.filter(sport='Baseball')
+	# 2. todas las ligas de mujeres
+	women_leagues = League.objects.filter(name__contains='Womens')
+	# 3. todas las ligas donde el deporte es cualquier tipo de hockey
+	hockey_leagues = League.objects.filter(sport__contains='Hockey')
+	# 4. todas las ligas donde el deporte no sea football
+	no_football_leagues = League.objects.exclude(sport='Football')
+	# 5. todas las ligas que se llaman "conferencias"
+	conference_leagues = League.objects.filter(name__contains='Conference')
+	# 6. todas las ligas de la región atlántica
+	atlantic_leagues = League.objects.filter(name__contains="Atlantic")
+	# 7. todos los equipos con sede en Dallas
+	dallas_teams = Team.objects.filter(location='Dallas')
+	# 8. todos los equipos nombraron los Raptors
+	raptors_teams = Team.objects.filter(team_name='Raptors')
+	# 9. todos los equipos cuya ubicación incluye "Ciudad" 
+	city_teams = Team.objects.filter(location__contains='City')
+	# 10. todos los equipos cuyos nombres comienzan con "T"
+	t_teams = Team.objects.filter(team_name__startswith='T')
+	# 11. todos los equipos, ordenados alfabéticamente por ubicación
+	location_order_teams = Team.objects.all().order_by('location')
+	# 12. todos los equipos, ordenados por nombre de equipo en orden alfabético inverso
+	name_order_teams = Team.objects.all().order_by('-team_name')
+	# 13. cada jugador con apellido "Cooper"
+	cooper_players = Player.objects.filter(last_name='Cooper')
+	# 14. cada jugador con nombre "Joshua"
+	joshua_players = Player.objects.filter(first_name='Joshua')
+	# 15. todos los jugadores con el apellido "Cooper" EXCEPTO aquellos con "Joshua" como primer nombre
+	cooper_joshua_players = Player.objects.filter(last_name='Cooper').exclude(first_name='Joshua')
+	# 16. todos los jugadores con nombre "Alexander" O nombre "Wyatt"
+	alexander_wyatt_players = Player.objects.filter(first_name='Alexander') | Player.objects.filter(first_name='Wyatt')
+	
+	#SPORTS ORM II
+	# 1. todos los equipos en la Atlantic Women's Soccer Federeation
+	awsf_teams = Team.objects.filter(league__name="Atlantic Womens' Soccer Federation")
+	# 2. todos los jugadores (actuales) en los Raleigh Penguins
+	rp_players = Player.objects.filter(curr_team__team_name="Penguins")
+	# 3. todos los jugadores (actuales) en la International Collegiate Football Association
+	icfa_players = Player.objects.filter(curr_team__league__name="International Collegiate Football Association")
+	# 4. todos los jugadores (actuales) en la Conferencia Americana de Fútbol Amateur con el apellido "Wilson"
+	acaf_players = Player.objects.filter(curr_team__league__name="American Conference of Amateur Football")
+	wilson_acaf = acaf_players.filter(last_name="Wilson")
+	# 5. todos los jugadores de fútbol
+	football_players = Player.objects.filter(curr_team__league__sport="Football")
+	# 6. todos los equipos con un jugador (actual) llamado "Sophia"
+	sophia_teams = Team.objects.filter(curr_players__first_name="Sophia")
+	# 7. todas las ligas con un jugador (actual) llamado "Sophia"
+	sophia_leagues = League.objects.filter(teams__curr_players__first_name="Sophia")
+	# 8. todos con el apellido "Flores" que NO (actualmente) juegan para los DC Nuggets
+	dcn_players = Player.objects.filter(curr_team__team_name="Nuggets")
+	noflores_dcn = dcn_players.exclude(last_name="Flores")
+	# 9. todos los equipos, pasados y presentes, con los que Samuel Evans ha jugado
+	e_teams = Team.objects.filter(all_players__last_name="Evans")
+	ce_teams = e_teams.filter(all_players__first_name="Charlotte")
+	# 10. todos los jugadores, pasados y presentes, de Calgary Generals
+	cg_players = Player.objects.filter(all_teams__team_name="Generals")
+	# 11. todos los jugadores que anteriormente estaban (pero que no lo están) con los Wisconsin White Sox
+	wws_players = Player.objects.filter(all_teams__team_name="White Sox")
+	old_wws_players = wws_players.exclude(curr_team__team_name="White Sox")
+	# 12. cada equipo para el que Christian Roberts jugó antes de unirse a los Chicago Cubs
+	r_teams = Team.objects.filter(all_players__last_name="Roberts")
+	cr_teams = r_teams.filter(all_players__first_name="Christian")
+	cr_oldteams = cr_teams.exclude(team_name="Cubs")
+	# 13. todos llamados "Joshua" que alguna vez han jugado en la Pacific Basketball Athletics Conference
+	pbac_players = Player.objects.filter(all_teams__league__name="Pacific Basketball Athletics Conference")
+	pbac_joshua_players = pbac_players.filter(first_name="Joshua")
+
+
 	context = {
+		#SPORTS ORM II
+		'pbac_joshua_players': pbac_joshua_players,
+		'cr_oldteams': cr_oldteams,
+		'old_wws_players': old_wws_players,
+		'cg_players': cg_players,
+		'ce_teams': ce_teams,
+		'noflores_dcn': noflores_dcn,
+		'sophia_leagues': sophia_leagues,
+		'sophia_teams': sophia_teams,
+		'football_players': football_players,
+		'wilson_acaf': wilson_acaf,
+		'icfa_players': icfa_players,
+		'rp_players': rp_players,
+		'awsf_teams': awsf_teams,
+
+		#SPORTS ORM I
+		'alexander_wyatt_players': alexander_wyatt_players,
+		'cooper_joshua_players': cooper_joshua_players,
+		'joshua_players': joshua_players,
+		'cooper_players': cooper_players,
+		'name_order_teams': name_order_teams,
+		'location_order_teams': location_order_teams,
+		't_teams': t_teams,
+		'city_teams': city_teams,
+		'raptors_teams': raptors_teams,
+		'dallas_teams': dallas_teams,
+		'atlantic_leagues': atlantic_leagues,
+		'conference_leagues': conference_leagues,
+		'no_football_leagues': no_football_leagues,
+		'hockey_leagues': hockey_leagues,
+		'women_leagues': women_leagues,
+		'baseball_leagues': baseball_leagues,
+
+		#DEFAULT
 		"leagues": League.objects.all(),
 		"teams": Team.objects.all(),
 		"players": Player.objects.all(),

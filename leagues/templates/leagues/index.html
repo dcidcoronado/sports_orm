@@ -4,7 +4,271 @@
 		<title>Sports Leagues</title>
 	</head>
 	<body>
-		<h1>Leagues</h1>
+
+		<h1>SPORTS ORM I</h1>
+		<h3>1. Baseball Leagues</h3>
+		<ol>
+			{% for league in baseball_leagues %}
+				<li>{{league.name}}</li>
+			{% empty %}
+				<p>No leagues found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>2. Women Leagues</h3>
+		<ol>
+			{% for league in women_leagues %}
+				<li>{{league.name}}</li>
+			{% empty %}
+				<p>No leagues found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>3. Hockey Leagues</h3>
+		<ol>
+			{% for league in hockey_leagues %}
+				<li>{{league.name}}</li>
+			{% empty %}
+				<p>No leagues found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>4. No-Football Leagues</h3>
+		<ol>
+			{% for league in no_football_leagues %}
+				<li>{{league.name}}</li>
+			{% empty %}
+				<p>No leagues found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>5. Conference Leagues</h3>
+		<ol>
+			{% for league in conference_leagues %}
+				<li>{{league.name}}</li>
+			{% empty %}
+				<p>No leagues found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>6. Atlantic Leagues</h3>
+		<ol>
+			{% for league in atlantic_leagues %}
+				<li>{{league.name}}</li>
+			{% empty %}
+				<p>No leagues found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>7. Dallas Teams</h3>
+		<ol>
+			{% for team in dallas_teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>8. Raptors Teams</h3>
+		<ol>
+			{% for team in raptors_teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>9. City Teams</h3>
+		<ol>
+			{% for team in city_teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>10. T Teams</h3>
+		<ol>
+			{% for team in t_teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>11. Order by Location Teams</h3>
+		<ol>
+			{% for team in location_order_teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>12. Order by Name Teams</h3>
+		<ol>
+			{% for team in name_order_teams %}
+				<li>{{team.team_name}} {{team.location}} </li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>13. Cooper Players</h3>
+		<ol>
+			{% for player in cooper_players %}
+				<li>{{player.last_name}}, {{player.first_name}} </li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>14. Joshua Players</h3>
+		<ol>
+			{% for player in joshua_players %}
+				<li>{{player.first_name}} {{player.last_name}} </li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>15. Cooper no Joshua Players</h3>
+		<ol>
+			{% for player in cooper_joshua_players %}
+				<li>{{player.last_name}}, {{player.first_name}} </li>
+			{% empty %}
+			<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>16. Alexander and Wyatt Players</h3>
+		<ol>
+			{% for player in alexander_wyatt_players %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h1>SPORTS ORM II</h1>
+		<h3>1. Atlantic Womens' Soccer Federation Teams</h3>
+		<ol>
+			{% for team in awsf_teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>2. Raleigh Penguins Players</h3>
+		<ol>
+			{% for player in rp_players %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>3. International Collegiate Football Association Players</h3>
+		<ol>
+			{% for player in icfa_players %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>4. American Conference of Amateur Football Wilson Players</h3>
+		<ol>
+			{% for player in wilson_acaf %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>5. Football Players</h3>
+		<ol>
+			{% for player in football_players %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>6. Sophia Teams</h3>
+		<ol>
+			{% for teams in sophia_teams %}
+				<li>{{team.location}} {{teams.team_name}}</li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>7. Sophia Leagues</h3>
+		<ol>
+			{% for leagues in sophia_leagues %}
+				<li>{{leagues.name}}</li>
+			{% empty %}
+				<p>No leagues found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>8. No Flores DC Nuggets Players</h3>
+		<ol>
+			{% for player in noflores_dcn %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>9. Charlotte Evans Teams</h3>
+		<ol>
+			{% for teams in ce_teams %}
+				<li>{{team.location}} {{teams.team_name}}</li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>10.  Calgary Generals Players</h3>
+		<ol>
+			{% for player in cg_players %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>11.  Wisconsin White Sox Old Players</h3>
+		<ol>
+			{% for player in old_wws_players %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>12. Christian Roberts Old Teams</h3>
+		<ol>
+			{% for teams in cr_oldteams %}
+				<li>{{team.location}} {{teams.team_name}}</li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>13.  Pacific Basketball Athletics Conference Joshua Players</h3>
+		<ol>
+			{% for player in pbac_joshua_players %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No players found</p>
+			{% endfor %}
+		</ol>
+		
+		<h3>Leagues</h3>
 		<ol>
 			{% for league in leagues %}
 				<li>{{league.name}}</li>
@@ -12,7 +276,8 @@
 				<p>No leagues found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
 			{% endfor %}
 		</ol>
-		<h1>Teams</h1>
+
+		<h3>Teams</h3>
 		<ol>
 			{% for team in teams %}
 				<li>{{team.location}} {{team.team_name}}</li>
@@ -20,7 +285,8 @@
 				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
 			{% endfor %}
 		</ol>
-		<h1>Players</h1>
+
+		<h3>Players</h3>
 		<ol>
 			{% for player in players %}
 				<li>{{player.first_name}} {{player.last_name}}</li>
