@@ -198,8 +198,8 @@
 
 		<h3>6. Sophia Teams</h3>
 		<ol>
-			{% for teams in sophia_teams %}
-				<li>{{team.location}} {{teams.team_name}}</li>
+			{% for team in sophia_teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
 			{% empty %}
 				<p>No teams found</p>
 			{% endfor %}
@@ -207,16 +207,16 @@
 
 		<h3>7. Sophia Leagues</h3>
 		<ol>
-			{% for leagues in sophia_leagues %}
-				<li>{{leagues.name}}</li>
+			{% for league in sophia_leagues %}
+				<li>{{league.name}}</li>
 			{% empty %}
 				<p>No leagues found</p>
 			{% endfor %}
 		</ol>
 
-		<h3>8. No Flores DC Nuggets Players</h3>
+		<h3>8. All Flores no DC Nuggets Players</h3>
 		<ol>
-			{% for player in noflores_dcn %}
+			{% for player in flores_nodcn %}
 				<li>{{player.first_name}} {{player.last_name}}</li>
 			{% empty %}
 				<p>No players found</p>
@@ -225,8 +225,8 @@
 
 		<h3>9. Charlotte Evans Teams</h3>
 		<ol>
-			{% for teams in ce_teams %}
-				<li>{{team.location}} {{teams.team_name}}</li>
+			{% for team in ce_teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
 			{% empty %}
 				<p>No teams found</p>
 			{% endfor %}
@@ -252,8 +252,8 @@
 
 		<h3>12. Christian Roberts Old Teams</h3>
 		<ol>
-			{% for teams in cr_oldteams %}
-				<li>{{team.location}} {{teams.team_name}}</li>
+			{% for team in cr_oldteams %}
+				<li>{{team.location}} {{team.team_name}}</li>
 			{% empty %}
 				<p>No teams found</p>
 			{% endfor %}
@@ -267,7 +267,29 @@
 				<p>No players found</p>
 			{% endfor %}
 		</ol>
+
+		<h3>14. More than 12 Players Teams</h3>
+		<ol>
+			{% for team in twelveplus_teams %}
+				{% if team.all_players__count >= 12 %}
+					<li> {{ team.team_name }} has been {{ team.all_players__count }} players </li>
+				{% endif %}
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
+
+		<h3>15. All Players and their Teams</h3>
+		<ol>
+			{% for player in players_teams %}
+					<li> {{player.first_name}} {{player.last_name}}: {{player.num_teams}}</li>
+			{% empty %}
+				<p>No teams found</p>
+			{% endfor %}
+		</ol>
 		
+
+		<h1>SUMMARY</h1>
 		<h3>Leagues</h3>
 		<ol>
 			{% for league in leagues %}
