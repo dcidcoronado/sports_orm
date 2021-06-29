@@ -61,7 +61,7 @@ def index(request):
 	# 10. todos los jugadores, pasados y presentes, de Calgary Generals
 	cg_players = Player.objects.filter(all_teams__team_name="Generals", all_teams__location="Calgary")
 	# 11. todos los jugadores que anteriormente estaban (pero que no lo están) con los Wisconsin White Sox
-	old_wws_players = Player.objects.filter(all_teams__team_name="White Sox").exclude(curr_team__team_name="White Sox")
+	old_wws_players = Player.objects.filter(all_teams__team_name="White Sox", all_teams__location="Wisconsin").exclude(curr_team__team_name="White Sox")
 	# 12. cada equipo para el que Christian Roberts jugó antes de unirse a los Chicago Cubs
 	cr_oldteams = Team.objects.filter(all_players__last_name="Roberts", all_players__first_name="Christian").exclude(team_name="Cubs", location="Chicago")
 	# 13. todos llamados "Joshua" que alguna vez han jugado en la Pacific Basketball Athletics Conference
